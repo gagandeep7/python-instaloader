@@ -12,8 +12,9 @@ class APIAuthError(Exception):
   description = "Authentication Error"
 
 L = instaloader.Instaloader()
-USER = os.getenv("LOGIN")
-PASSWORD = os.getenv("PASSWORD")
+# USER = os.getenv("LOGIN")
+# PASSWORD = os.getenv("PASSWORD")
+# L.login(USER,PASSWORD)
 
 @app.route("/download")
 def getDownloadLink():
