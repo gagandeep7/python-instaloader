@@ -1,4 +1,4 @@
-from flask import Flask,request
+from flask import Flask,request,jsonify
 import instaloader
 import os
 
@@ -12,9 +12,6 @@ class APIAuthError(Exception):
   description = "Authentication Error"
 
 L = instaloader.Instaloader()
-# USER = os.getenv("LOGIN")
-# PASSWORD = os.getenv("PASSWORD")
-# L.login(USER,PASSWORD)
 
 @app.route("/download")
 def getDownloadLink():
@@ -22,6 +19,7 @@ def getDownloadLink():
     post_url = args.get("url")
     try:
         post = instaloader.Post.from_shortcode(L.context, post_url.split('reel/')[1].split("/")[0])
-        return  post.video_url
+
+        return  jsonify({"DATA":post.video_url})
     except:
         return "An exception occurred"
